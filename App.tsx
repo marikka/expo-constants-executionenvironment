@@ -1,12 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import * as AuthSession from "expo-auth-session";
+import Constants from "expo-constants";
 
 export default function App() {
+  const executionEnvironment = Constants.executionEnvironment;
+  console.log(
+    `Constants.executionEnvironment: ${JSON.stringify(executionEnvironment)}`
+  );
+  const redirectUrl = AuthSession.getRedirectUrl();
+  console.log(`AuthSession.getRedirectUrl(): ${redirectUrl}`);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>{`Constants.executionEnvironment: ${JSON.stringify(
+        executionEnvironment
+      )}`}</Text>
+      <Text>{`AuthSession.getRedirectUrl(): ${redirectUrl}`}</Text>
     </View>
   );
 }
@@ -14,8 +24,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
